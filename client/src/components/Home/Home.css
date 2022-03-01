@@ -1,0 +1,10 @@
+.container-home{
+   background-image: url("../../img/grand-palace-1822487_1920.jpg"); 
+   background-position: center center;
+   background-size: cover;
+   z-index: -1;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   min-height: 100vh;
+} 
+

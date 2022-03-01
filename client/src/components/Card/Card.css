@@ -1,0 +1,149 @@
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 25em;
+    margin-bottom: 3.5em;
+    margin-top: 3.5em;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 10px rgba(250, 2, 2, 0.116);
+    cursor: default;
+    transition: all 0.4s ease;
+    border: 1.5px solid white;
+}
+
+.card-container:hover{
+    box-shadow: 10px 10px 30px rgba(247, 3, 3, 0.4);
+    transform: translateY(-6%);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1.5px solid red;
+} 
+
+.image-container img{
+    overflow: hidden;
+    width: 35%;
+    height: 200px;
+}
+
+.div-image{
+    padding-top: 20px;
+}
+
+.card-content{
+    margin: 1rem;
+    margin-top: 0.5rem;
+}
+
+
+
+p{
+    text-align: center;
+    padding-right: 45px;
+}
+
+.card-title{
+    margin-bottom: 0.5rem;
+    text-align: center;
+    line-height: 1.5;
+    color: white;
+    font-style: italic;
+    font-size: 35px;
+}
+
+.card-continent{
+    margin-bottom: 0.5rem;
+    text-align: center;
+    line-height: 1.5;
+    color: #e49292;
+    font-size: 20px;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.btn button{
+    padding: 0.5rem 5rem 0.5rem 5rem;
+    background-color: white;
+    color: black;
+    border: none;
+    transition: 0.2s;
+    margin: 0.5rem;
+    border-radius: 5px;
+}
+
+.btn button:hover{
+    color: white;
+    background-color: rgba(27, 154, 252, 0.055);
+    border: 1px solid red;
+}
+
+.link{
+    text-transform: uppercase;
+    color: #1B9CFC;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+
+
+/* 
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.card-container{
+    width: 100%;
+    display: flex;
+    max-width: 1100px;
+}
+
+.card{
+    width: 100%;
+    margin: 20px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 10px rgba(250, 2, 2, 0.116);
+    cursor: default;
+    transition: all 0.4s ease;
+}
+
+.card:hover{
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(-6%);
+}
+
+.card img{
+    width: 35%;
+    height: 200px;
+}
+
+.card .card-container{
+    padding: 15px;
+    text-align: center;
+}
+
+.card .card-container p{
+    line-height: 1.5;
+    color: #6a6a6a
+}
+*/
+
+
