@@ -21,7 +21,7 @@ function Paginate() {
 
   useEffect(() => {
     dispatch(getDog());
-    //dispatch(addTemps());
+    dispatch(addTemps());
     dispatch(getTemperament())
   }, [dispatch]);
 
