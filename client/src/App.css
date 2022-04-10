@@ -1,42 +1,38 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+.App {
+  text-align: center;
 }
 
-select{
-    padding: 9.5px 0 9.5px 2px;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-input, select{
-    padding: 7.5px 0 7.5px 2px;
-    outline: 0 none;
-    border-radius: 5px;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-select:focus, input:focus {
-    border: 3px solid rgb(4, 73, 236);
-    outline: 0 none;
-    border-radius: 5px;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.form button{
-    padding: 8px 15px 8px 15px;
-    margin: 20px;
-    background-color: white;
-    color: black;
-    transition: all 0.5s;
-    border-radius: 6px;
+.App-link {
+  color: #61dafb;
 }
 
-.form button:hover{
-    padding: 8px 15px 8px 15px;
-    margin: 20px;
-    background-color:black;
-    border: 1px solid red;
-    color: white;
-    transition: all 0.5s;
-    border-radius: 6px;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
-
