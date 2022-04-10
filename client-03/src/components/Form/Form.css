@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.form-container {
+  width: 800px;
+  height: auto;
+  background: #000203;
+  padding: 30px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+}
+
+.form-container h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.controls {
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-family: "calibri";
+  font-size: 20px;
+  color: white;
+  transition: 0.5s;
+  text-align: center;
+}
+
+.controls:focus {
+  transition: 0.5s;
+  width: 100%;
+  background: #1d1d1d;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border: 2px solid #fa0800;
+  font-family: "calibri";
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+.controls-temp {
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-family: "calibri";
+  font-size: 20px;
+  color: white;
+  transition: 0.5s;
+}
+
+.controls-temp:focus {
+  transition: 0.5s;
+  border: 2px solid #fa0800;
+  background: #1d1d1d;
+}
+
+.form-container p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
+
+.form-container .botons {
+  width: 100%;
+  background: #3f4042;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+  transition: 0.5s;
+  border-radius: 15px;
+}
+
+.form-container .botons:hover {
+  width: 100%;
+  background: #00bb10;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+  transition: 0.5s;
+  border-radius: 15px;
+}
+
+.container-temperament {
+  border: 2px solid #fa0800;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 10px 15px 10px 15px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.add-temperament-h3 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.li-temp {
+  list-style: none;
+  padding: 10px 5px 10px 5px;
+  background: rgb(240, 73, 73);
+  border-radius: 10px;
+  margin-right: 25px;
+  border: 2px solid white;
+  font-size: 15px;
+  transition: all 0.5s;
+  font-weight: 100;
+  cursor: crosshair;
+}
+
+.li-temp:hover {
+  list-style: none;
+  padding: 10px 5px 10px 5px;
+  background: black;
+  border-radius: 10px;
+  margin-right: 25px;
+  border: 2px solid red;
+  color: white;
+  font-size: 15px;
+  transition: all 0.5s;
+}
+

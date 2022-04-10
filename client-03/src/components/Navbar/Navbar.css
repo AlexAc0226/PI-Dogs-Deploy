@@ -1,0 +1,32 @@
+.container-navbar{
+    font-size: 30px;
+    background-color: rgb(14, 13, 13);
+    border-radius: 0px 0px 70px 70px;
+}
+
+
+.navbar-ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 50px;
+    list-style: none;
+    padding: 5px;
+}
+
+.nav{
+    padding: 10px;
+}
+
+.navbar-li{
+    padding: 15px;
+    color: white;
+    transition: all 0.5s;
+}
+
+.navbar-li:hover{
+    background-color: rgb(112, 45, 45);
+    transition: all 0.5s;
+    border-radius: 20px;
+}
+
