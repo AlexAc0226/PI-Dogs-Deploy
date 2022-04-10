@@ -12,7 +12,7 @@ export const POST_DOG = "POST_DOG";
 
 export function getDog() {
   return function (dispatch) {
-    axios.get("http://localhost:3001/dogs").then(res => {
+    axios.get("/dogs").then(res => {
       dispatch({
         type: GET_DOGS,
         payload: res.data
@@ -23,7 +23,7 @@ export function getDog() {
 
 export function getNameDog(name) {
   return function(dispatch){
-    axios.get(`http://localhost:3001/dogs?name=${name}`).then(res => {
+    axios.get(`/dogs?name=${name}`).then(res => {
       dispatch({
         type: GET_NAME_DOG,
         payload: res.data, 
@@ -34,7 +34,7 @@ export function getNameDog(name) {
 
 export function getDetail(id) {
   return function (dispatch) {
-    axios.get(`http://localhost:3001/dogs/${id}`).then(res =>{
+    axios.get(`/dogs/${id}`).then(res =>{
       dispatch({
         type: GET_DETAIL,
         payload: res.data,
@@ -52,7 +52,7 @@ export function filterByRazaDog(payload) {
 
 export function filterByTemp(temp){
   return async function(dispatch){
-    const r = await axios.get('http://localhost:3001/dogs/temp?temp=' + temp)
+    const r = await axios.get('/dogs/temp?temp=' + temp)
     dispatch({
       type: FILTER_BY_TEMPERAMENT,
       payload: r.data
@@ -62,16 +62,13 @@ export function filterByTemp(temp){
 
 export function getTemperament(){
   return function (dispatch) {
-    axios.get("http://localhost:3001/temperament").then(res => {
+    axios.get("/temperament").then(res => {
       dispatch({
         type: GET_TYPES_OF_TEMPERAMENTS,
         payload: res.data
       })
     }).catch((error)=> console.log(error)) 
   };
-
-
-
 }
 
 export function orderByName(payload) {
@@ -91,7 +88,7 @@ export function orderByWeight(payload) {
 export function postCreateDog(payload) {
   return async function () {
     const createDog = await axios({
-      url: "http://localhost:3001/dogs/create",
+      url: "/dogs/create",
       method: "POST",
       data: payload
     });
