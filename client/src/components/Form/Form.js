@@ -16,8 +16,8 @@ function validate(e){
 
   if(e.difficulty === "" || e.difficulty === null || e.difficulty.length < 1 || e.difficulty === undefined) error.difficulty = 'You must write an difficulty'
 
-  if(e.duration === "" || e.duration === null || e.duration === undefined ) error.duration = 'ESTA VACIO' //'You must write an duration'
-  else if(e.duration < 0) error.duration = "I don´t know negative numbersallwed"
+  if(e.duration < 0 || e.duration.includes("-")) error.duration = "Negative symbols, letters and numbers are not allowed"
+  else if(e.duration === "" || e.duration === null || e.duration === undefined ) error.duration = 'You must write an duration'
 
   if(e.season === "" || e.season === null || e.season === undefined) error.season = 'You must write an season'
 
@@ -176,7 +176,7 @@ function Form() {
             <option value="shopping">TURISMO DE COMPRAS</option>
             <option value="luxury">TURISMO DE LUJO</option>
           </select>
-          {errors.type && <p>{errors.type}</p>}
+          {errors.type && <p className="error">{errors.type}</p>}
         </div>
 
         <div>
@@ -188,7 +188,7 @@ function Form() {
             placeholder="Title"
             onChange={(e) => handleChange(e)}
           />
-          {errors.name && <p>{errors.name}</p>}
+          {errors.name && <p className="error">{errors.name}</p>}
         </div>
 
         <div>
@@ -203,13 +203,13 @@ function Form() {
             <option value="4">Difficulty 4</option>
             <option value="5">Difficulty 5</option>
           </select>
-          {errors.difficulty && <p>{errors.difficulty}</p>}
+          {errors.difficulty && <p className="error">{errors.difficulty}</p>}
         </div>
 
         <div>
           <label>Duration of the activity: </label>
           <input type="number" min="1" value={input.duration} name="duration" onChange={(e)=> handleChangeDuration(e)} placeholder="Enter the number of hours" />
-          {errors.duration && <p>{errors.duration}</p>}
+          {errors.duration && <p className="error">{errors.duration}</p>}
         </div>
 
         <div>
@@ -223,7 +223,7 @@ function Form() {
             <option value="fall">Fall</option>
             <option value="spring">Spring</option>
           </select>
-          {errors.season && <p>{errors.season}</p>}
+          {errors.season && <p className="error">{errors.season}</p>}
         </div>
 
         <div>
@@ -234,11 +234,11 @@ function Form() {
             </option>
             {data.map((e) => (
               <option value={e.id} key={e.id}>
-                 {`(${e.id}) ${e.name}`}
+                 {`${e.id} - ${e.name}`}
               </option>
             ))}
           </select>
-          {errors.countryId && <p>{errors.countryId}</p>}
+          {errors.countryId && <p className="error">{errors.countryId}</p>}
         </div>
 
         <div>
@@ -248,7 +248,7 @@ function Form() {
             input.countryId.map((element, i) => (
               <ul key={i}>
                     <li>{element}</li>
-                    <button  onClick={(e)=> handleDeleteCountry(e, element)}>Delete</button>
+                    <button onClick={(e)=> handleDeleteCountry(e, element)}>Delete</button>
                   </ul>
             )) : ""
           }

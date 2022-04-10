@@ -51,5 +51,28 @@
   color: red;
   font-family: 'Rowdies', cursive;
   padding-bottom: 50px;
-  
+}
+
+.paginate-btn{
+  background-color:transparent ;
+  padding: 15px;
+  margin-top: 15px;
+  margin-left: 15px;
+  border: 1.5px solid red;
+  font-size: 20px;
+  color: white;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.paginate-btn:focus{
+  background-color: rgb(132, 0, 0, 0.6) ;
+  padding: 15px;
+  margin-top: 15px;
+  margin-left: 15px;
+  border: 1.5px solid red;
+  font-size: 20px;
+  color: white;
+  border-radius: 10px;
+  transition: all 0.5s;
 }

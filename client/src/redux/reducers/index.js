@@ -6,7 +6,8 @@ import {
   ORDER_BY_NAME_COUNTRY,
   ORDER_BY_POPULATION,
   FILTER_BY_CONTINENT,
-  FILTER_BY_ACTIVITY
+  FILTER_BY_ACTIVITY,
+  GET_ALL_ACTIVITY
 } from "../actions/index.js";
 
 const initialState = {
@@ -88,6 +89,8 @@ function rootReducer(state = initialState, action) {
 
       case FILTER_BY_ACTIVITY:
         return {...state, allCountries: action.payload}
+
+      case GET_ALL_ACTIVITY: return {...state, activities: action.payload}
 
     default:
       return {...state};

@@ -20,7 +20,7 @@
     width: 60%;
     height: 30%;
     min-height: 50vh;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.7);
     /*background-color: rgba(248, 4, 98, 0.2);*/
     border: 1px solid red;
     border-radius: 30px;
@@ -30,4 +30,9 @@
     padding-top: 30px;
     font-size: 25px;
     font-weight: 100;
+}
+
+.error{
+    font-size: 15px;
+    color: rgb(240, 98, 3);
 }
