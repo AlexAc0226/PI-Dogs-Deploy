@@ -29,7 +29,9 @@ const addTemperaments = async (req, res) => {
       await Temperament.create({ name: e });
     }
 
-    res.status(200).json("Added temperaments!!")
+    const list = await Temperament.findAll()
+
+    res.status(200).json(list)
   } catch (error) {
     console.log(error);
   }
