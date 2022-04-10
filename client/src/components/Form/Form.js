@@ -2,29 +2,44 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom' 
 
-import { getCountries, postActivity } from "../../redux/actions/index";
+import { getDog, postCreateDog, getTemperament } from "../../redux/actions/index";
 
 import "./Form.css";
 
 function validate(e){
   let error = {};
 
-  if(e.type === null || e.type === "" || e.type === undefined) error.type = "You need to enter a type of activity"
+  if(e.name === null || e.name === "" || e.name === undefined) error.name = 'Debe escribir un nombre para el perro';
+  else if(!isNaN(e.name)) error.name = 'Solo se admite texto'
 
-  if(e.name === null || e.name === "" || e.name === undefined) error.name = 'You must write an activity name';
-  else if(!isNaN(e.name)) error.name = 'Text only is supported'
+  if(e.heightMin < 0 || e.heightMin.includes("-")) error.heightMin = "Numeros, simbolos o letras no estan permitidos"
+  else if(e.heightMin === "" || e.heightMin === null || e.heightMin === undefined ) error.heightMin = 'Debe escribir una altura minima para el perro'
 
-  if(e.difficulty === "" || e.difficulty === null || e.difficulty.length < 1 || e.difficulty === undefined) error.difficulty = 'You must write an difficulty'
+  if(e.heightMax === "" || e.heightMax === null || e.heightMax === undefined ) error.heightMax = 'Debe escribir una altura maxima para el perro'
+  else if(e.heightMax < 0 ) error.heightMax = "Numeros, simbolos o letras no estan permitidos"
+  else if(parseInt(e.heightMax, 10) < parseInt(e.heightMin, 10)) error.heightMax = 'La altura maxima del perro no puede ser menor a la altura minima'
 
-  if(e.duration < 0 || e.duration.includes("-")) error.duration = "Negative symbols, letters and numbers are not allowed"
-  else if(e.duration === "" || e.duration === null || e.duration === undefined ) error.duration = 'You must write an duration'
+  if(e.weightMin < 0 ) error.weightMin = "Numeros, simbolos o letras no estan permitidos"
+  else if(e.weightMin === "" || e.weightMin === null || e.weightMin === undefined ) error.weightMin = 'Debe escribir un peso minimo para el perro'
 
-  if(e.season === "" || e.season === null || e.season === undefined) error.season = 'You must write an season'
+  if(e.weightMax < 0 ) error.weightMax = "Numeros, simbolos o letras no estan permitidos"
+  else if(e.weightMax === "" || e.weightMax === null || e.weightMax === undefined ) error.weightMax = 'Debe escribir un peso maximo para el perro'
+  else if(parseInt(e.weightMax, 10)  < parseInt(e.weightMin, 10)) error.weightMax = 'El peso maxima del perro no puede ser menor al peso minimo'
 
-  if(e.countryId.length === "" || e.countryId.length === null || e.countryId.length === 0) error.countryId = 'Minimum one country required'
-  for(let i = 0; i < e.countryId.length; i++){
-    for(let y = i + 1; y <= e.countryId.length; y++){
-      if(e.countryId[i] === e.countryId[y]) error.countryId = "The countries are repeated"
+  
+  if(e.yearOfLifeMin < 0 ) error.yearOfLifeMin = "Numeros, simbolos o letras no estan permitidos"
+  else if(e.yearOfLifeMin === "" || e.yearOfLifeMin === null || e.yearOfLifeMin === undefined ) error.yearOfLifeMin = 'Debe escribir estimacion de vida minima para el perro'
+
+  if(e.yearOfLifeMax < 0 ) error.yearOfLifeMax = "Numeros, simbolos o letras no estan permitidos"
+  else if(e.yearOfLifeMax === "" || e.yearOfLifeMax === null || e.yearOfLifeMax === undefined ) error.yearOfLifeMax = 'Debe escribir estimacion de vida minima para el perro'
+  else if(parseInt(e.yearOfLifeMax, 10 ) < parseInt(e.yearOfLifeMin, 10)) error.yearOfLifeMax = 'La estimació de vida maxima del perro no puede ser menor a la minima'
+
+
+
+  if(e.temperament.length === "" || e.temperament.length === null || e.temperament.length === 0) error.temperament = 'Minimo debe seleccionar un temperamento'
+  for(let i = 0; i < e.temperament.length; i++){
+    for(let y = i + 1; y <= e.temperament.length; y++){
+      if(e.temperament[i] === e.temperament[y]) error.temperament = "El temperamento selecionado ya fue seleccionado anteriormente"
     }
   }
 
@@ -33,81 +48,27 @@ function validate(e){
 
 function Form() {
   const [input, setInput] = useState({
-    type: "",
     name: "",
-    difficulty: "",
-    duration: "",
-    season: "",
-    countryId: [],
+    heightMin: "",
+    heightMax: "",
+    weightMin: "",
+    weightMax: "",
+    yearOfLifeMin: "",
+    yearOfLifeMax: "",
+    temperament: [],
   });
 
   const [errors, setErrors] = useState({});
-  const data = useSelector((state) => state.allCountries);
+  const temps = useSelector((state) => state.temperaments)
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getCountries());
+    dispatch(getDog());
+    dispatch(getTemperament())
   }, [dispatch]);
 
-  function handleChangeActivities(e) {
-    e.preventDefault();
-    setInput((input) => ({
-      ...input,
-      //type: [...input.type, e.target.value] //va insertando nuevos elementos dentro de un array
-      //type: [e.target.value] //solo inserta UN elemento dentro de un array
-      type: e.target.value //solo le inserta UN elemento a estado, y NOOO va dentro de un array, es un string comun y corriente
-    }));
-
-    setErrors(validate({
-      ...input, type: e.target.value
-    }))
-  }
-
-  function handleChangeDifficulty(e){
-    e.preventDefault();
-    setInput(input => ({
-      ...input, difficulty: e.target.value
-    }))
-
-    setErrors(validate({
-      ...input, difficulty: e.target.value
-    }))
-  }
-
-  function handleChangeDuration(e){
-    e.preventDefault();
-    setInput(input => ({
-      ...input, duration: e.target.value
-    }))
-
-    setErrors(validate({
-      ...input, duration: e.target.value
-    }))
-  }
-
-  function handleChangeSeason(e){
-    e.preventDefault();
-    setInput(input => ({
-      ...input, season: e.target.value
-    }))
-
-    setErrors(validate({
-      ...input, season: e.target.value
-    }))
-  }
-
-  function handleChangeCountries(e){
-    e.preventDefault();
-    setInput(input => ({
-      ...input, countryId: [...new Set([...input.countryId, e.target.value])]
-    }))
-   
-    setErrors(validate({
-      ...input, countryId: [...input.countryId, e.target.value]
-    }))
-  }
-
+  
   function handleChange(e) {
     e.preventDefault();
     setInput((input) => ({
@@ -120,144 +81,208 @@ function Form() {
     }))
   }
 
-  function handleSubmit(e){
-    if (input.type && input.name && input.difficulty && input.duration && input.season && input.countryId.length > 0) {
-      e.preventDefault();
-      dispatch(postActivity(input));
-      alert("Activity succesfully Created!!");
-      
-      setInput({
-        type: "",
-        name: "",
-        difficulty: "",
-        duration: "",
-        season: "",
-        countryId: []
-      });
-      navigate("/home");
-    } else {
-      e.preventDefault();
-      alert("You must complete every field!!");
-    }
-  }
-
-  function handleDeleteCountry(e, country){
+  function handleChangeheightMin(e){
     e.preventDefault();
-    setInput((input)=> ({
-      ...input, countryId: input.countryId.filter(e => e !== country)
+    setInput(input => ({
+      ...input, heightMin: e.target.value
+    }))
+
+    setErrors(validate({
+      ...input, heightMin: e.target.value
+    }))
+  }
+  
+  function handleChangeheightMax(e){
+    e.preventDefault();
+    setInput(input => ({
+      ...input, heightMax: e.target.value
+    }))
+
+    setErrors(validate({
+      ...input, heightMax: e.target.value
     }))
   }
 
-  //console.log(input);
+  function handleChangeweightMin(e){
+    e.preventDefault();
+    setInput(input => ({
+      ...input, weightMin: e.target.value
+    }))
+
+    setErrors(validate({
+      ...input, weightMin: e.target.value
+    }))
+  }
+
+  function handleChangeweightMax(e){
+    e.preventDefault();
+    setInput(input => ({
+      ...input, weightMax: e.target.value
+    }))
+
+    setErrors(validate({
+      ...input, weightMax: e.target.value
+    }))
+  }
+
+  function handleChangeLifeEstMin(e){
+    e.preventDefault();
+    setInput(input => ({
+      ...input, yearOfLifeMin: e.target.value
+    }))
+
+    setErrors(validate({
+      ...input, yearOfLifeMin: e.target.value
+    }))
+  }
+
+  function handleChangeLifeEstMax(e){
+    e.preventDefault();
+    setInput(input => ({
+      ...input, yearOfLifeMax: e.target.value
+    }))
+
+    setErrors(validate({
+      ...input, yearOfLifeMax: e.target.value
+    }))
+  }
+
+  function handleChangeTemperaments(e){
+    e.preventDefault();
+    setInput(input => ({
+      ...input, temperament: [...new Set([...input.temperament, e.target.value])]
+    }))
+   
+    setErrors(validate({
+      ...input, temperament: [...input.temperament, e.target.value]
+    }))
+  }
+
+  function handleSubmit(e){
+    if (input.name && input.heightMin && input.heightMax && input.weightMin && input.weightMax && input.yearOfLifeMin && input.yearOfLifeMax && input.temperament.length > 0) {
+      e.preventDefault();
+      dispatch(postCreateDog(input));
+      alert("Su perrito a sido creado!!!");
+      
+      setInput({
+        name: "",
+        heightMin: "",
+        heightMax: "",
+        weightMin: "",
+        weightMax: "",
+        yearOfLifeMin: "",
+        yearOfLifeMax: "",
+        temperament: []
+      });
+
+      navigate("/home");
+    } else {
+      e.preventDefault();
+      alert("Debe completar todo los campos para finalizar la creacion...");
+    }
+  }
+
+  function handleDeleteTemperament(e, temp){
+    e.preventDefault();
+    setInput((input)=> ({
+      ...input, temperament: input.temperament.filter(e => e !== temp)
+    }))
+  }
 
   return (
-    <div className="container-form">
-      <h1>Create activity</h1>
-      <form className="form" onSubmit={(e)=> handleSubmit(e)}>
-        <div>
-          <label>Tourist activit: </label>
-          <select onChange={(e) => handleChangeActivities(e)}>
-            <option value="" hidden>
-              Tourist activity
-            </option>
-            <option value="business">TURISMO DE NEGOCIOS</option>
-            <option value="urban">TURISMO URBANO</option>
-            <option value="natural">TURISMO NATURAL</option>
-            <option value="conventional">TURISMO CONVENCIONAL</option>
-            <option value="no_conventional">TURISMO NO CONVENCIONAL</option>
-            <option value="gastronomic">TURISMO GASTRONÓMICO</option>
-            <option value="advanture">TURISMO DE AVENTURA</option>
-            <option value="ecological">TURISMO ECOLÓGICO</option>
-            <option value="cultural">TURISMO CULTURAL</option>
-            <option value="health">TURISMO DE SALUD</option>
-            <option value="sports">TURISMO DEPORTIVO</option>
-            <option value="sun_and_beach">TURISMO DE SOL Y PLAYA</option>
-            <option value="solidary">TURISMO SOLIDARIO</option>
-            <option value="shopping">TURISMO DE COMPRAS</option>
-            <option value="luxury">TURISMO DE LUJO</option>
-          </select>
-          {errors.type && <p className="error">{errors.type}</p>}
-        </div>
+    <div className="form-container">
+      <h1>CREAR PERRO</h1>
+      <form autocomplete="off" className="" onSubmit={(e)=> handleSubmit(e)}>
 
+        {/*Nombre de la raza del perrito*/}
         <div>
-          <label>Name of the activity: </label>
+          <label>Raza/nombre del perro: </label>
           <input
+            className="controls"
             type="text"
             value={input.name}
             name="name"
-            placeholder="Title"
+            placeholder="Inserte el nombre/raza del perrito"
             onChange={(e) => handleChange(e)}
           />
           {errors.name && <p className="error">{errors.name}</p>}
         </div>
+        <br />
 
+        {/*Altura del perro*/}
         <div>
-          <label>Difficulty: </label>
-          <select onChange={(e)=> handleChangeDifficulty(e)}>
-            <option value="" hidden>
-              Selected difficulty
-            </option>
-            <option value="1">Difficulty 1</option>
-            <option value="2">Difficulty 2</option>
-            <option value="3">Difficulty 3</option>
-            <option value="4">Difficulty 4</option>
-            <option value="5">Difficulty 5</option>
-          </select>
-          {errors.difficulty && <p className="error">{errors.difficulty}</p>}
+          <label>Altura del perro: </label>
+          <input className="controls" type="number" min="1" value={input.heightMin} name="heightMin" onChange={(e)=> handleChangeheightMin(e)} placeholder="Inserte la altura minima" />
+          {errors.heightMin && <p className="error">{errors.heightMin}</p>}
+
+          <input className="controls" type="number" min="1" value={input.heightMax} name="heightMax" onChange={(e)=> handleChangeheightMax(e)} placeholder="Inserte la altura maxima" />
+          {errors.heightMax && <p className="error">{errors.heightMax}</p>}
         </div>
+        <br />
 
+        {/*Peso del perro*/}
         <div>
-          <label>Duration of the activity: </label>
-          <input type="number" min="1" value={input.duration} name="duration" onChange={(e)=> handleChangeDuration(e)} placeholder="Enter the number of hours" />
-          {errors.duration && <p className="error">{errors.duration}</p>}
+          <label>Peso del perro: </label>
+          <input className="controls" type="number" min="1" value={input.weightMin} name="weightMin" onChange={(e)=> handleChangeweightMin(e)} placeholder="Inserte el peso minimo" />
+          {errors.heightMin && <p className="error">{errors.weightMin}</p>}
+
+          <input className="controls" type="number" min="1" max="150" value={input.weightMax} name="weightMax" onChange={(e)=> handleChangeweightMax(e)} placeholder="Inserte el peso maximo" />
+          {errors.weightMax && <p className="error">{errors.weightMax}</p>}
         </div>
+        <br />
 
+        {/*Años de vida*/}
         <div>
-          <label>Season: </label>
-          <select onChange={(e)=> handleChangeSeason(e)}>
-            <option value="" hidden>
-              Selected season
-            </option>
-            <option value="summer">Summer</option>
-            <option value="winter">Winter</option>
-            <option value="fall">Fall</option>
-            <option value="spring">Spring</option>
-          </select>
-          {errors.season && <p className="error">{errors.season}</p>}
+          <label>Años de vida estimados : </label>
+          <input className="controls" type="number" min="1" value={input.yearOfLifeMin} name="yearOfLifeMin" onChange={(e)=> handleChangeLifeEstMin(e)} placeholder="Cantidad de años minimos" />
+          {errors.yearOfLifeMin && <p className="error">{errors.yearOfLifeMin}</p>}
+
+          <input className="controls" type="number" min="1" value={input.yearOfLifeMax} name="yearOfLifeMax" onChange={(e)=> handleChangeLifeEstMax(e)} placeholder="Cantidad de años maxima" />
+          {errors.yearOfLifeMax && <p className="error">{errors.yearOfLifeMax}</p>}
         </div>
+        <br />
 
+        {/*Select para añadir temperamentos*/}
         <div>
-          <label>Countries: </label>
-          <select onChange={(e)=> handleChangeCountries(e)}>
-            <option value="" hidden>
-              Select a country
+          <label>Temperamentos: </label>
+          <select className="controls-temp" onChange={(e)=> handleChangeTemperaments(e)}>
+            <option className="controls-temp" value="" hidden>
+              Seleccione uno o varios temperamentos
             </option>
-            {data.map((e) => (
-              <option value={e.id} key={e.id}>
-                 {`${e.id} - ${e.name}`}
+            {temps.map((e) => (
+              <option value={e.name} key={e.id}>
+                 {`${e.name}`}
               </option>
             ))}
           </select>
-          {errors.countryId && <p className="error">{errors.countryId}</p>}
+          {errors.temperament && <p className="error">{errors.temperament}</p>}
         </div>
+        <br />
 
+        {/*Lista de temperamentos*/}
         <div>
-          <h3>Lista de paises: </h3>
+          <h3 className="add-temperament-h3">Temperamentos añadidos: </h3>
+          <div className="container-temperament">
           {
-            input.countryId !== 0 ? 
-            input.countryId.map((element, i) => (
-              <ul key={i}>
-                    <li>{element}</li>
-                    <button onClick={(e)=> handleDeleteCountry(e, element)}>Delete</button>
-                  </ul>
-            )) : ""
+            input.temperament.length !== 0 ? 
+            input.temperament.map((temp, i) => (
+              <div key={i}>
+              <ul>
+                    <li className="li-temp" onClick={(e)=> handleDeleteTemperament(e, temp)}>
+                      <h3 className="font-h3">{temp}</h3>
+                    </li>
+              </ul>
+              </div>
+            )) : "Ninguno..."
           }
+          </div>
+          
         </div>
 
         <br></br>
 
         <div>
-          <button type="submit">Create activity</button>
+          <button className="botons" type="submit">CREAR</button>
         </div>
       </form>
     </div>

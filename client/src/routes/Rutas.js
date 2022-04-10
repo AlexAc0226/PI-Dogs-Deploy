@@ -15,7 +15,7 @@ function Rutas() {
       <Routes>
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/detail/:id" element={<Details />} />
-        <Route exact path="/activity/new" element={<Form />} />
+        <Route exact path="/dogs/create" element={<Form />} />
         <Route path="/" element={<Landing />} />
       </Routes>
     </BrowserRouter>

@@ -7,15 +7,15 @@ function OrderByName() {
   
   const dispatch = useDispatch();
 
-  const handleOrderCountries = (e)=>{
+  const handleOrderDogs = (e)=>{
     e.preventDefault();
     dispatch(orderByName(e.target.value))
   }
 
     return (
     <div>
-      <select onChange={(e)=> handleOrderCountries(e)}>
-        <option value="" hidden>Alphabetical order</option>
+      <select onChange={(e)=> handleOrderDogs(e)}>
+        <option value="" hidden>Orden alfabetico</option>
         <option value="des" key="des">Ordenar de A-z</option>
         <option value="asc" key="asc">Ordenar de Z-a</option>
       </select>

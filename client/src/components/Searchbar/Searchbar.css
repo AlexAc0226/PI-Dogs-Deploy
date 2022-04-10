@@ -1,5 +1,3 @@
-
-
 .searchbar-section{
     min-height: auto;
     display: flex;
@@ -27,9 +25,9 @@
     border: none;
     background: transparent;
     font-weight: bold;
-    padding-left: 24px;
+    padding-left: 40px;
     background-image: url('./icon/icon-search-2.png');
-    background-size: 16px;
+    background-size: 25px;
     background-repeat: no-repeat;
     width: 0px;
     transition: all 0.5s;
@@ -39,6 +37,7 @@
 .search-form .search_text:focus{
     outline: none;
     width: 300px;
+    font-size: 20px;
 } 
 
 /*Se despliega cuando pasamos la flecha por arriba del input*/

@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getNameCountries } from "../../redux/actions/index";
+import { getNameDog } from "../../redux/actions/index";
 
 import "./Searchbar.css";
 
 function Searchbar(props) {
   const dispatch = useDispatch();
 
-  const [nameCountry, setNameCountry] = useState('');
+  const [nameDog, setnameDog] = useState('');
 
   const handleChange = (e) => {
     e.preventDefault();
-    setNameCountry(e.target.value); 
+    setnameDog(e.target.value); 
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getNameCountries(nameCountry));
-    setNameCountry("");
+    dispatch(getNameDog(nameDog));
+    setnameDog("");
   };
 
   return (
@@ -30,7 +30,7 @@ function Searchbar(props) {
               name="q"
               className="search_text"
               placeholder="Search"
-              value={nameCountry}
+              value={nameDog}
               onChange={(e) => handleChange(e)}
              
             />

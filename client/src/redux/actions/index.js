@@ -1,42 +1,41 @@
 import axios from "axios";
 
-export const GET_COUNTRIES = "GET_COUNTRIES";
-export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
-export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
+export const GET_DOGS = "GET_DOGS";
+export const FILTER_BY_RAZA_DOG = "FILTER_BY_RAZA_DOG";
+export const FILTER_BY_TEMPERAMENT = "FILTER_BY_TEMPERAMENT";
 export const GET_DETAIL = "GET_DETAIL";
-export const ORDER_BY_NAME_COUNTRY = "ORDER_BY_NAME_COUNTRY";
-export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
-export const GET_NAME_COUNTRY = "GET_NAME_COUNTRY";
-export const GET_TYPES_OF_DIET = "GET_TYPES_OF_DIET";
-export const POST_ACTIVITY = "POST_ACTIVITY";
-export const GET_ALL_ACTIVITY = "GET_ALL_ACTIVITY";
+export const ORDER_BY_NAME_DOG = "ORDER_BY_NAME_DOG";
+export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
+export const GET_NAME_DOG = "GET_NAME_DOG";
+export const GET_TYPES_OF_TEMPERAMENTS = "GET_TYPES_OF_TEMPERAMENTS";
+export const POST_DOG = "POST_DOG";
+export const RESET_DOG = "RESET_DOG"
 
-export function getCountries() {
+export function getDog() {
   return function (dispatch) {
-    axios.get("/countries").then(res => {
+    axios.get("/dogs").then(res => {
       dispatch({
-        type: GET_COUNTRIES,
+        type: GET_DOGS,
         payload: res.data
       })
     }).catch((error)=> console.log(error)) 
   };
 }
 
-export function getNameCountries(name) {
+export function getNameDog(name) {
   return function(dispatch){
-    axios.get(`/countries?name=${name}`).then(res => {
+    axios.get(`/dogs?name=${name}`).then(res => {
       dispatch({
-        type: GET_NAME_COUNTRY,
+        type: GET_NAME_DOG,
         payload: res.data, 
       })
-    }).catch(error => console.log(error))
+    }).catch(error => alert("El perro que usted a buscado no existe!!!"))
   }
 }
 
-
 export function getDetail(id) {
   return function (dispatch) {
-    axios.get(`/countries/${id}`).then(res =>{
+    axios.get(`/dogs/${id}`).then(res =>{
       dispatch({
         type: GET_DETAIL,
         payload: res.data,
@@ -45,122 +44,66 @@ export function getDetail(id) {
   };
 }
 
-export function filterByContinent(payload) {
+export function filterByRazaDog(payload) {
   return{
-    type: FILTER_BY_CONTINENT,
+    type: FILTER_BY_RAZA_DOG,
     payload: payload
   }
 }
 
-
-export function filterByActivity(payload) {
-  return function(dispatch){
-    axios.get(`/activity/filteredActivity?name=${payload}`).then(res => {
-      dispatch({
-        type: FILTER_BY_ACTIVITY,
-        payload: res.data
-      })
+export function filterByTemp(temp){
+  return async function(dispatch){
+    const r = await axios.get('/dogs/temp?temp=' + temp)
+    dispatch({
+      type: FILTER_BY_TEMPERAMENT,
+      payload: r.data
     })
   }
 }
 
+export function getTemperament(){
+  return function (dispatch) {
+    axios.get("/temperament").then(res => {
+      dispatch({
+        type: GET_TYPES_OF_TEMPERAMENTS,
+        payload: res.data
+      })
+    }).catch((error)=> console.log(error)) 
+  };
+}
+
 export function orderByName(payload) {
   return {
-    type: ORDER_BY_NAME_COUNTRY,
+    type: ORDER_BY_NAME_DOG,
     payload,
   };
 }
 
-export function orderByPopulation(payload) {
+export function orderByWeight(payload) {
   return {
-    type: ORDER_BY_POPULATION,
+    type: ORDER_BY_WEIGHT,
     payload,
   };
 }
 
-export function postActivity(payload) {
+export function postCreateDog(payload) {
   return async function () {
-    const newActivity = await axios({
-      url: "/activity/new",
+    const createDog = await axios({
+      url: "/dogs/create",
       method: "POST",
       data: payload
     });
 
     return {
-      type: POST_ACTIVITY,
-      payload: newActivity,
+      type: POST_DOG,
+      payload: createDog,
     }
   }
 }
 
-export function getAllNameActivity() {
-  return function (dispatch) {
-    axios.get("/activity/all").then(res => {
-      dispatch({
-        type: GET_ALL_ACTIVITY,
-        payload: res.data
-      })
-    }).catch((error)=> console.log(error)) 
-  };
-}
-
-
-
-/* export function getCountries() {
-  return async function (dispatch) {
-    try{
-        var json = await axios.get("http://localhost:3001/countries");
-        dispatch({
-        type: GET_COUNTRIES,
-        payload: json.data,
-      })
-    }catch(error){
-      console.log(error)
+  export function resetDogDatail(){
+    return{
+      type: RESET_DOG
     }
-  };
-} */
-
-/* export function getNameCountries(name) {
-  return async function (dispatch) {
-    try {
-      const res = await axios.get(
-        `http://localhost:3001/countries?name=${name}`
-      );
-      return dispatch({
-        type: GET_NAME_COUNTRY,
-        payload: res.data,
-      });
-    } catch (error) {
-      alert("This country doesn't exist");
-    }
-  };
-} */
-
-/* export function getDetail(id) {
-  return async function (dispatch) {
-    try {
-      let res = await axios.get(`http://localhost:3001/countries/${id}`);
-      return dispatch({
-        type: GET_DETAIL,
-        payload: res.data,
-      });
-    } catch (error) {
-      alert("Id country not found");
-    }
-  };
-} */
-
-/* export function filterByActivity(payload) {
-  return async function(dispatch){
-    let info = await axios.get(`http://localhost:3001/activity?name=${payload}`)
-    try{
-      return dispatch({
-        type: FILTER_BY_ACTIVITY,
-        payload: info.data
-      });
-    }catch(error){
-      alert("problema")
-    }
-    
   }
-} */
+

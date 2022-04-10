@@ -1,4 +1,8 @@
-
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
 
 .all-detail-container{
     display: flex;
@@ -6,17 +10,23 @@
 }
 
 
-
 .detail-container{
-    background-image: url('../../img/b-f/3.jpg');
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     bottom: 250px;
     margin: 0 auto;
-    height: 65em;
+    height: 100em;
     width: 100%;
+    background-image: url("../../img/background-paginate/labrador-retriever-gd2e8eb240_1920.jpg");
+
+    background-position: center center;
+    background-size: cover;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
 }
 
 .detail-img{
@@ -26,13 +36,14 @@
 }
 
 .detail-img img{
-    width: 600px;
-    height: 400px;
+    width: 900px;
+    height: 900px;
+    object-fit: cover;
 } 
 
 .detail-data{
     line-height: 2;
-    font-size: 25px;
+    font-size: 30px;
     background-color: rgba(210, 165, 236, 0.6);
     text-align: center;
     padding: 50px;
@@ -40,27 +51,21 @@
     height: 505px;
 }
 
-.detail-list_activities{
-    background-color: rgb(245, 245, 245, 0.6);
-    text-align: center;
-    padding: 50px;
-    border-radius: 0 30px 30px 0;
-}
 
 .container-detail-btn{
     display: flex;
     background-color: black;
     color: red;
 }
+
 .detail-title{
-    padding: 0 0 0 750px;
-    font-size: 50px;
+    padding: 0 0 0 950px;
+    font-size: 80px;
 }
 
 .container-detail-btn{
     background: black;
     padding: 20px;
-
 }
 
 .btn-detail{

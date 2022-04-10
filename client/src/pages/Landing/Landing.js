@@ -1,17 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import s from "./landing.module.css";
+import "./Landing.css";
 
 
 function Landing() {
   return (
-    <div className={s.contenedor}>
-        <div className={s.contenedor_landing}>
-          <h1 className={s.title_landing}>Countries App</h1>
+    <div className="container_landing">
+        <div>
+          <h1 className="title_landing">PerriPedia</h1>
         </div>
-        <div className={s.contenedor_landing}>
-          <Link className={s.link} to="/home">
-            WELCOME
+        <div>
+          <Link className="ov-btn-grow-spin" to="/home">
+            BIENVENID@
+           
           </Link>
       </div>
   </div>

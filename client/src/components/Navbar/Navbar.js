@@ -5,22 +5,22 @@ import "../Navbar/Navbar.css";
 
 import SearchBar from "../Searchbar/Searchbar.js";
 import OrderByName from "../Ordering/OrderByName/OrderByName";
-import OrderByPopulation from "../Ordering/OrderByPopulation/OrderByPopulation";
-import FilterByContiinent from '../Filter/FilterByContinent/FilterByContiinent';
-import FilterByActivity from '../Filter/FilterByActivity/FilterByActivity';
+import OrderByWeight from "../Ordering/OrderByWeight/OrderByWeight";
+import FilterByTemperament from '../Filter/FilterByTemperament/FilterByTemperament';
+import FilterByRaza from '../Filter/FilterByRaza/FilterByRaza';
 
 function Navbar() {
   return (
     <div className="container-navbar">
       <div className="nav">
         <ul className="navbar-ul">
-          <Link to='/'><li className="navbar-li">HOME</li></Link>
-          <Link to='/activity/new'><li className="navbar-li">CREATE ACTIVITY</li></Link>
+          <Link to='/' className="link"><li className="navbar-li">Home</li></Link>
+          <Link to='/dogs/create' className="link"><li className="navbar-li">Crear Perro</li></Link>
           <li className="navbar-li-seatchBar"><SearchBar /></li>
           <li><OrderByName /></li>
-          <li><OrderByPopulation /></li>
-          <li><FilterByContiinent /></li>
-          <li><FilterByActivity /></li>
+          <li><OrderByWeight /></li>
+          <li><FilterByTemperament /></li>
+          <li><FilterByRaza /></li>
         </ul>
       </div>
     </div>

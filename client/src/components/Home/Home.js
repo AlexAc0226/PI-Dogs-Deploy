@@ -7,8 +7,12 @@ function Home() {
   return (
     <div className="container-home">
       <div className="container-home-paginate">
-          <Navbar />
-          <Paginate />
+          <div className="container-home-paginate-navbar">
+            <Navbar />
+          </div>
+          <div className="container-home-paginate-paginate">
+            <Paginate />
+          </div>
       </div>
     </div>
   )
