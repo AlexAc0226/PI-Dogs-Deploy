@@ -9,6 +9,7 @@ export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 export const GET_NAME_DOG = "GET_NAME_DOG";
 export const GET_TYPES_OF_TEMPERAMENTS = "GET_TYPES_OF_TEMPERAMENTS";
 export const POST_DOG = "POST_DOG";
+export const ADD_TEMPS = "ADD_TEMPS";
 
 export function getDog() {
   return function (dispatch) {
@@ -65,6 +66,17 @@ export function getTemperament(){
     axios.get("/temperament").then(res => {
       dispatch({
         type: GET_TYPES_OF_TEMPERAMENTS,
+        payload: res.data
+      })
+    }).catch((error)=> console.log(error)) 
+  };
+}
+
+export function addTemps(){
+  return function (dispatch) {
+    axios.get("/temperament/addTemp").then(res => {
+      dispatch({
+        type: ADD_TEMPS,
         payload: res.data
       })
     }).catch((error)=> console.log(error)) 

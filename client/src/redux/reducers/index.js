@@ -7,7 +7,8 @@ import {
   ORDER_BY_WEIGHT,
   FILTER_BY_RAZA_DOG,
   FILTER_BY_TEMPERAMENT,
-  GET_TYPES_OF_TEMPERAMENTS
+  GET_TYPES_OF_TEMPERAMENTS,
+  ADD_TEMPS
 } from "../actions/index.js";
 
 const initialState = {
@@ -97,6 +98,10 @@ function rootReducer(state = initialState, action) {
     case FILTER_BY_TEMPERAMENT:
       return {...state, allDogs: action.payload}  
     
+      case ADD_TEMPS: return {
+        ...state, temperaments: action.payload
+      }
+
     default:
       return { ...state };
   }

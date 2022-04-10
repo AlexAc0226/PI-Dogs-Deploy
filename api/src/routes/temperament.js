@@ -3,6 +3,7 @@ const router = Router();
 
 const { addTemperaments, getTemperaments } = require("../constrollers/Temperament.js");
 
-router.get("/", addTemperaments);
+router.get("/addTemp", addTemperaments)
+router.get("/", getTemperaments);
 
 module.exports = router;

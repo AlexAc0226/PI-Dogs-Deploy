@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getDog, getTemperament } from "../../redux/actions/index";
+import { getDog, getTemperament, addTemps } from "../../redux/actions/index";
 
 import Card from "../Card/Card";
 import Render_Paginate from "./Render_Paginate";
@@ -21,6 +21,7 @@ function Paginate() {
 
   useEffect(() => {
     dispatch(getDog());
+    dispatch(addTemps());
     dispatch(getTemperament())
   }, [dispatch]);
 
