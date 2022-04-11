@@ -29,10 +29,13 @@
     font-weight: bold;
     padding-left: 24px;
     background-image: url('./icon/icon-search-2.png');
-    background-size: 16px;
+    background-size: 26px;
     background-repeat: no-repeat;
     width: 0px;
     transition: all 0.5s;
+    font-size: 20px;
+    margin-top: 20px;
+    padding-left: 40px;
 }
 
 /*Se despliega cuando hacemos click*/

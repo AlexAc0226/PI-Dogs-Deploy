@@ -32,7 +32,6 @@ function Searchbar(props) {
               placeholder="Search"
               value={nameDog}
               onChange={(e) => handleChange(e)}
-             
             />
           </div>
         </form>
