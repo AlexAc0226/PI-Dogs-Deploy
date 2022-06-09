@@ -10,6 +10,7 @@ export const GET_NAME_DOG = "GET_NAME_DOG";
 export const GET_TYPES_OF_TEMPERAMENTS = "GET_TYPES_OF_TEMPERAMENTS";
 export const POST_DOG = "POST_DOG";
 export const ADD_TEMPS = "ADD_TEMPS";
+export const RESET_DETAIL = "RESET_DETAIL";
 
 export function getDog() {
   return function (dispatch) {
@@ -109,6 +110,14 @@ export function postCreateDog(payload) {
       type: POST_DOG,
       payload: createDog,
     }
+  }
+}
+
+export default function resetDetail(){
+  return async function(dispatch){
+    dispatch({
+      type: RESET_DETAIL
+    })
   }
 }
 

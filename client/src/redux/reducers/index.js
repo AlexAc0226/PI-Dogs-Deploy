@@ -8,7 +8,8 @@ import {
   FILTER_BY_RAZA_DOG,
   FILTER_BY_TEMPERAMENT,
   GET_TYPES_OF_TEMPERAMENTS,
-  ADD_TEMPS
+  ADD_TEMPS,
+  RESET_DETAIL
 } from "../actions/index.js";
 
 const initialState = {
@@ -101,6 +102,11 @@ function rootReducer(state = initialState, action) {
       case ADD_TEMPS: return {
         ...state, temperaments: action.payload
       }
+
+    case RESET_DETAIL: 
+    return{
+      ...state, detail: null
+    }
 
     default:
       return { ...state };
