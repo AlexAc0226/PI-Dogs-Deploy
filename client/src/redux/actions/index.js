@@ -113,13 +113,8 @@ export function postCreateDog(payload) {
   }
 }
 
-export default function resetDetail(){
-  return async function(dispatch){
-    dispatch({
-      type: RESET_DETAIL
-    })
+export function resetDetail(){
+  return{
+    type: RESET_DETAIL
   }
 }
-
-
-
