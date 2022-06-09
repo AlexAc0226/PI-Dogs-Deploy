@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate} from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getDetail, resetDetail } from "../../redux/actions/index.js";
+import { getDetail } from "../../redux/actions/index.js";
 
 import './Details.css';
 
@@ -17,10 +17,6 @@ function Details() {
 useEffect(() => {
     let dogId = paramas.id;
     dispatch(getDetail(dogId))
-
-    return () => {
-      dispatch(resetDetail());
-    }
   }, [dispatch, paramas.id]);
 
   const navegation = () => {

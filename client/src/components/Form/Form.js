@@ -195,7 +195,7 @@ function Form() {
       <form autocomplete="off" className="" onSubmit={(e)=> handleSubmit(e)}>
 
         {/*Nombre de la raza del perrito*/}
-        <div>
+        <div className='algo'>
           <label className="label-text">Raza/nombre del perro: </label>
           <input
             className="controls"
@@ -207,10 +207,9 @@ function Form() {
           />
           {errors.name && <p className="error">{errors.name}</p>}
         </div>
-        <br />
 
         {/*Altura del perro*/}
-        <div>
+        <div className='algo'>
           <label className="label-text">Altura del perro: </label>
           <input className="controls" type="number" min="1" value={input.heightMin} name="heightMin" onChange={(e)=> handleChangeheightMin(e)} placeholder="Inserte la altura minima" />
           {errors.heightMin && <p className="error">{errors.heightMin}</p>}
@@ -218,10 +217,9 @@ function Form() {
           <input className="controls" type="number" min="1" value={input.heightMax} name="heightMax" onChange={(e)=> handleChangeheightMax(e)} placeholder="Inserte la altura maxima" />
           {errors.heightMax && <p className="error">{errors.heightMax}</p>}
         </div>
-        <br />
 
         {/*Peso del perro*/}
-        <div>
+        <div className='algo'>
           <label className="label-text">Peso del perro: </label>
           <input className="controls" type="number" min="1" value={input.weightMin} name="weightMin" onChange={(e)=> handleChangeweightMin(e)} placeholder="Inserte el peso minimo" />
           {errors.heightMin && <p className="error">{errors.weightMin}</p>}
@@ -229,10 +227,9 @@ function Form() {
           <input className="controls" type="number" min="1" max="150" value={input.weightMax} name="weightMax" onChange={(e)=> handleChangeweightMax(e)} placeholder="Inserte el peso maximo" />
           {errors.weightMax && <p className="error">{errors.weightMax}</p>}
         </div>
-        <br />
 
         {/*Años de vida*/}
-        <div>
+        <div className='algo'>
           <label className="label-text">Años de vida estimados : </label>
           <input className="controls" type="number" min="1" value={input.yearOfLifeMin} name="yearOfLifeMin" onChange={(e)=> handleChangeLifeEstMin(e)} placeholder="Cantidad de años minimos" />
           {errors.yearOfLifeMin && <p className="error">{errors.yearOfLifeMin}</p>}
@@ -240,10 +237,9 @@ function Form() {
           <input className="controls" type="number" min="1" value={input.yearOfLifeMax} name="yearOfLifeMax" onChange={(e)=> handleChangeLifeEstMax(e)} placeholder="Cantidad de años maxima" />
           {errors.yearOfLifeMax && <p className="error">{errors.yearOfLifeMax}</p>}
         </div>
-        <br />
 
         {/*Select para añadir temperamentos*/}
-        <div>
+        <div className='algo'>
           <label className="label-text">Temperamentos: </label>
           <select className="controls-temp" onChange={(e)=> handleChangeTemperaments(e)}>
             <option className="controls-temp" value="" hidden>
@@ -257,10 +253,9 @@ function Form() {
           </select>
           {errors.temperament && <p className="error">{errors.temperament}</p>}
         </div>
-        <br />
 
         {/*Lista de temperamentos*/}
-        <div>
+        <div  className='algo'>
           <h3 className="add-temperament-h3">Temperamentos añadidos: </h3>
           <div className="container-temperament">
           {
@@ -278,9 +273,6 @@ function Form() {
           </div>
           
         </div>
-
-        <br></br>
-
         <div>
           <button className="botons" type="submit">CREAR</button>
         </div>
